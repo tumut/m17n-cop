@@ -18,7 +18,7 @@ The output is in unicode, so it is recommended to have a font with support for C
 
 First clone this repository and `cd` to its root directory.
 
-After making sure you have your dependencies in check run the Makefile and restart your IBus daemon (so that files are reloaded) as follows:
+After making sure you have your dependencies in order, run the Makefile and restart your IBus daemon (so that files are reloaded) as follows:
 
 ```shell
 make install
