@@ -1,0 +1,180 @@
+;; cop-translit.mim -- Coptic transliteration input method
+;; Copyright (C) 2020
+;; Timóteo (Ⲧⲁⲉⲓⲟⲛⲟⲩⲧⲉ) <https://github.com/tumut>
+
+(input-method cop translit)
+
+(description
+ "Ⲧransliterated input method for writing in Coptic, focused on providing characters for Bohairic and Sahidic but also featuring:
+  Ⲋ (SOOU '6') = \"/st\"
+  Ⳁ (SAMPI '900') = \"/s\"
+  Ⳃ (CROSSED SHEI) = \"/sh\"
+  Ⳉ (AKHMIMIC HOREI) = \"/h\"
+  Ⳟ (OLD NUBIAN NGI) = \"/ng\"
+  Ⳡ (OLD NUBIAN ÑI) = \"^n\", \"ny\"
+  Ⳣ (OLD NUBIAN WAU) = \"/w\"
+  ⳹ (OLD NUBIAN FULL STOP) = \"\\\\\"
+  ⳺ (OLD NUBIAN QUESTION MARK) = \"/?\"
+  ⳼ (OLD NUBIAN VERSE DIVIDER) = \"//\"
+  ⳩ (CHI RO) = \"/xr\"
+  · (MIDDLE DOT) = \"/.\"
+  • (BULLET) = \"/..\"
+
+Coptic alphabet: a b g d e z ^e th i k l m n ks o p f r s t ph kh ps ^o=w sh x h j c ti
+
+The output is in unicode, so a font with support for Coptic characters is required.
+
+The following mappings should be noted before there's any confusion:
+  Ϧ (XAI) = \"x\"
+  Ⲭ (KHI) = \"kh\"
+
+Diacritics:
+  Macron (Sahidic supralinear stroke) = '
+    n' → ⲛ̄
+  Grave accent (Bohairic supralinear stroke) = `
+    n` → ⲛ̀
+  Overline (denotes numbers) = ~
+    kh~ → ⲭ̅
+    /st~ → ⲋ̅
+  Double overline (denotes multiples of 1,000) = ~~
+    a~~ → ⲁ̿
+  Diaeresis = \"
+    i\" → ⲓ̈
+    u\" → ⲩ̈
+  Macron left half (used in abbreviations) = <
+  Conjoining macron (ibid.) = _
+  Macron right half (ibid.) = >
+    r<m> → ⲣ︤ⲙ︥
+    p<h_r_b> → ⲡ︤ϩ︦ⲣ︦ⲃ︥
+")
+
+(title "Ⳃ")
+
+(map
+ (map
+  ("'" 0x0304) ;; COMBINING MACRON
+  ("`" 0x0300) ;; COMBINING GRAVE ACCENT
+  ("\"" 0x0308) ;; COMBINING DIAERESIS
+
+  ("A" ?Ⲁ)
+  ("B" ?Ⲃ)
+  ("G" ?Ⲅ)
+  ("D" ?Ⲇ)
+  ("E" ?Ⲉ)
+  ("/ST" ?Ⲋ)
+  ("/St" ?Ⲋ)
+  ("Z" ?Ⲍ)
+  ("^E" ?Ⲏ)
+  ("TH" ?Ⲑ)
+  ("Th" ?Ⲑ)
+  ("I" ?Ⲓ)
+  ("K" ?Ⲕ)
+  ("L" ?Ⲗ)
+  ("M" ?Ⲙ)
+  ("N" ?Ⲛ)
+  ("KS" ?Ⲝ)
+  ("Ks" ?Ⲝ)
+  ("O" ?Ⲟ)
+  ("P" ?Ⲡ)
+  ("F" ?Ϥ)
+  ("R" ?Ⲣ)
+  ("S" ?Ⲥ)
+  ("T" ?Ⲧ)
+  ("U" ?Ⲩ)
+  ("PH" ?Ⲫ)
+  ("Ph" ?Ⲫ)
+  ("KH" ?Ⲭ)
+  ("Kh" ?Ⲭ)
+  ("PS" ?Ⲯ)
+  ("Ps" ?Ⲯ)
+  ("^O" ?Ⲱ)
+  ("W" ?Ⲱ)
+  ("/S", ?Ⳁ)
+  ("SH" ?Ϣ)
+  ("Sh" ?Ϣ)
+  ("X" ?Ϧ)
+  ("/H" ?Ⳉ)
+  ("H" ?Ϩ)
+  ("J" ?Ϫ)
+  ("C" ?Ϭ)
+  ("TI" ?Ϯ)
+  ("Ti" ?Ϯ)
+
+  ("a" ?ⲁ)
+  ("b" ?ⲃ)
+  ("g" ?ⲅ)
+  ("d" ?ⲇ)
+  ("e" ?ⲉ)
+  ("/st" ?ⲋ)
+  ("z" ?ⲍ)
+  ("^e" ?ⲏ)
+  ("ê" ?ⲏ)
+  ("th" ?ⲑ)
+  ("i" ?ⲓ)
+  ("k" ?ⲕ)
+  ("l" ?ⲗ)
+  ("m" ?ⲙ)
+  ("n" ?ⲛ)
+  ("ks" ?ⲝ)
+  ("o" ?ⲟ)
+  ("p" ?ⲡ)
+  ("f" ?ϥ)
+  ("r" ?ⲣ)
+  ("s" ?ⲥ)
+  ("t" ?ⲧ)
+  ("u" ?ⲩ)
+  ("ph" ?ⲫ)
+  ("kh" ?ⲭ)
+  ("ps" ?ⲯ)
+  ("^o" ?ⲱ)
+  ("w" ?ⲱ)
+  ("/s" ?ⳁ)
+  ("sh" ?ϣ)
+  ("x" ?ϧ)
+  ("/h" ?ⳉ)
+  ("h" ?ϩ)
+  ("j" ?ϫ)
+  ("c" ?ϭ)
+  ("ti" ?ϯ)
+
+  ("/XR" ?⳩)
+  ("/Xr" ?⳩)
+  ("/xr" ?⳩)
+
+  ("/NG" ?Ⳟ)
+  ("/Ng" ?Ⳟ)
+  ("^N" ?Ⳡ)
+  ("NY" ?Ⳡ)
+  ("Ny" ?Ⳡ)
+  ("/W" ?Ⳣ)
+
+  ("/ng" ?ⳟ)
+  ("^n" ?ⳡ)
+  ("ny" ?ⳡ)
+  ("/w" ?ⳣ)
+
+  ("/SH", ?Ⳃ)
+  ("/Sh", ?Ⳃ)
+
+  ("/sh", ?ⳃ)
+
+  ("/." ?·)
+  ("/.." ?•)
+  ("\\\\" ?⳹)
+  ("/?" ?⳺)
+  ("//" ?⳼)
+
+  ("~" 0x0305) ;; COMBINING OVERLINE
+  ("~~"0x033f) ;; COMBINING DOUBLE OVERLINE
+  ("<" 0xfe24) ;; COMBINING MACRON LEFT HALF
+  ("_" 0xfe26) ;; COMBINING CONJOINING MACRON
+  (">" 0xfe25))) ;; COMBINING MACRON RIGHT HALF
+
+(state
+ (init
+  (map)))
+
+;; Local Variables:
+;; coding: utf-8
+;; mode: lisp
+;; End:
